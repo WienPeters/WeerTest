@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using WeerTest;
+using WEERAPI.Models;
 
 namespace WEERAPI
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("WEERAPI/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         Weerhalen wh = new Weerhalen();

@@ -1,10 +1,16 @@
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Validations.Rules;
 
-namespace WEERAPI
+namespace WEERAPI.Models
 {
+    
+    
     public class WeatherForecast
     {
+        
+        [Route("WEERAPI/[models]")]
         public string StadsWeer(string stad)
         {
             string baseurl = "https://drimble.nl/weer/";
@@ -32,19 +38,19 @@ namespace WEERAPI
                 //boven en onder het samenvoegen v.d. text
                 string result2 = Regex.Replace(result, pattern2, m => m.Value.Insert(m.Value.Length - 1, stringToInsert), RegexOptions.Multiline);
                 var s = result2[4]; var ss = result2[2]; var sss = result2[3];
-                string ses = (((ss.ToString() + (sss.ToString()))));
-                string ses2 = (((ses.Replace(',', ' '))));
-                int er = Int32.Parse(ses2);
+                string ses = ss.ToString() + sss.ToString();
+                string ses2 = ses.Replace(',', ' ');
+                int er = int.Parse(ses2);
                 bool zonpan = false;
-                if (er > 19) { zonpan = true; return ("zonnenpanelen zijn met dit weer voordelig, " + result2); }
-                else { return("De huidige temperatuur :" + result2); }
+                if (er > 19) { zonpan = true; return "zonnenpanelen zijn met dit weer voordelig, " + result2; }
+                else { return "De huidige temperatuur :" + result2; }
                 //Console.WriteLine(niew);
             }
             else
             {
                 // Regular expression pattern to match capital letters or digits
                 // Replace using regular expression
-                return ("verkeerde stad als input");
+                return "verkeerde stad als input";
             }
         }
     }

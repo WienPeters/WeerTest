@@ -10,14 +10,14 @@ using System.Diagnostics.Metrics;
 using System.Runtime.Intrinsics.X86;
 using System.Text.RegularExpressions;
 
-namespace WeerTest
+namespace WEERAPI.Models
 {
     internal class Weerhalen
 
     {
         public string StadsWeer(string stad)
         {
-            
+
 
             string baseurl = "https://drimble.nl/weer/";
             string finurl = $"{baseurl}{stad}";
@@ -45,14 +45,14 @@ namespace WeerTest
                 //boven en onder het samenvoegen v.d. text
                 string result2 = Regex.Replace(result, pattern2, m => m.Value.Insert(m.Value.Length - 1, stringToInsert), RegexOptions.Multiline);
                 var s = result2[4]; var ss = result2[2]; var sss = result2[3];
-                string ses = (((ss.ToString() + (sss.ToString()))));
-                string ses2 = (((ses.Replace(',', ' '))));
-                int er = Int32.Parse(ses2);
+                string ses = ss.ToString() + sss.ToString();
+                string ses2 = ses.Replace(',', ' ');
+                int er = int.Parse(ses2);
                 bool zonpan = false;
 
                 //Console.WriteLine(result2);
-                if (er > 19) { zonpan = true; return("zonnenpanelen zijn met dit weer voordelig, " + result2); }
-                else { return("De huidige temperatuur :" + result2); }
+                if (er > 19) { zonpan = true; return "zonnenpanelen zijn met dit weer voordelig, " + result2; }
+                else { return "De huidige temperatuur :" + result2; }
                 //
                 //Console.WriteLine(niew);
             }
@@ -60,7 +60,7 @@ namespace WeerTest
             {
                 // Regular expression pattern to match capital letters or digits
                 // Replace using regular expression
-                return("verkeerde stad als input");
+                return "verkeerde stad als input";
             }
         }
     }
@@ -68,15 +68,15 @@ namespace WeerTest
 
 
 
-        // Setting up GeckoDriver
-        //new DriverManager().SetUpDriver(new FirefoxConfig());
-        //IWebDriver driver = new FirefoxDriver();
-        // Navigate to the website
-        //driver.Navigate().GoToUrl("http://example.com");
-        // Example: Find an input element and interact with it
-        //var inputElement = driver.FindElement(By.Name("inputName"));
-        //inputElement.SendKeys("Some Text");
-        // Add any additional actions, form submissions, or data scraping here
-        // Scrape data or perform further actions...
-        // Close the browser
-        //driver.Quit();
+// Setting up GeckoDriver
+//new DriverManager().SetUpDriver(new FirefoxConfig());
+//IWebDriver driver = new FirefoxDriver();
+// Navigate to the website
+//driver.Navigate().GoToUrl("http://example.com");
+// Example: Find an input element and interact with it
+//var inputElement = driver.FindElement(By.Name("inputName"));
+//inputElement.SendKeys("Some Text");
+// Add any additional actions, form submissions, or data scraping here
+// Scrape data or perform further actions...
+// Close the browser
+//driver.Quit();
