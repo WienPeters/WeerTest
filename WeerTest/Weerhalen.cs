@@ -16,7 +16,7 @@ namespace WeerTest
     internal class Weerhalen
 
     {
-        public void StadsWeer(string stad)
+        public string StadsWeer(string stad)
         {
             
 
@@ -52,8 +52,8 @@ namespace WeerTest
                 bool zonpan = false;
 
                 //Console.WriteLine(result2);
-                if (er > 19) { zonpan = true; Console.WriteLine("zonnenpanelen zijn met dit weer voordelig, " + result2); }
-                else { Console.WriteLine("De huidige temperatuur :" + result2); }
+                if (er > 19) { zonpan = true; return("zonnenpanelen zijn met dit weer voordelig, " + result2); }
+                else { return("De huidige temperatuur :" + result2); }
                 //
                 //Console.WriteLine(niew);
             }
@@ -61,7 +61,7 @@ namespace WeerTest
             {
                 // Regular expression pattern to match capital letters or digits
                 // Replace using regular expression
-                Console.WriteLine("verkeerde stad als input");
+                return("verkeerde stad als input");
             }
         }
     }

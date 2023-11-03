@@ -13,7 +13,8 @@ class Program
     static void Main()
     {
         Weerhalen wh = new Weerhalen();
-        wh.StadsWeer("Heerlen");
+        
+        Console.WriteLine(wh.StadsWeer("Heerlen"));
     }
 }
 
