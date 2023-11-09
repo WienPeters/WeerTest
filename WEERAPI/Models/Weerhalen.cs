@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
-
 using System.Diagnostics.Metrics;
 using System.Runtime.Intrinsics.X86;
 using System.Text.RegularExpressions;
@@ -19,19 +17,21 @@ namespace WEERAPI.Models
         {
 
 
-            string baseurl = "https://drimble.nl/weer/";
-            string finurl = $"{baseurl}{stad}";
+            //string baseurl = "https://drimble.nl/weer/"; <=Offline no requests
+            //string finurl = $"{baseurl}{stad}"; <=Offline no requests
             var web = new HtmlWeb();
-            var doc = web.Load(finurl);
-            var node = doc.DocumentNode.SelectSingleNode("//div[@class='dni top']");
-            string txt = node.WriteContentTo();
+            //var doc = web.Load(finurl); <=Offline no requests
+            //var node = doc.DocumentNode.SelectSingleNode("//div[@class='dni top']"); <=Offline no requests
+            //string txt = node.WriteContentTo();
+            string txt = "Test don't use requests";
             //vervangt iets niet moois uitziend
             string replace = "&#176;C";
             //vervangd het met duidelijkheid
             string beter = " graden celcius.";
             if (txt.Contains(replace))
             {
-                var weatherData = node.InnerText;
+                var node = txt; //<=Offline no requests
+                var weatherData = node;//node.InnerText; <=Offline no requests
                 string niew = weatherData.Replace(replace, beter);
                 string input = niew;
                 //ruimte invoegen tussen aanelkaargeplakte tekst
